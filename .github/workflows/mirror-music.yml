@@ -7,9 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     name: "Mirror"
     steps:
-      - uses: pkgstore/github-action-mirror@main
+      - uses: webfactory/ssh-agent@v0.7.0
         with:
-          source_repo: "https://lukas-eisenhauer.de/git/git/lukas/music.git"
-          target_repo: "git@github.com:biosfood/music-app.git"
-          target_user: "${{ secrets.MIRROR_TARGET_USER_GITHUB }}"
-          target_token: "${{ secrets.MIRROR_TARGET_TOKEN_GITHUB }}"
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: "Clone repository"
+        shell: bash
+        run: git clone --bare https://lukas-eisenhauer.de/git/git/lukas/music.git
+      - name: "pushing mirrored repository"
+        shell: bash
+        run: cd music && git push --mirror git@github.com:biosfood/music-app.git
