@@ -1,7 +1,6 @@
 name: "Repository Mirror: Music App"
 
-on:
-  - push
+on: workflow_dispatch
 
 jobs:
   mirror:
@@ -10,7 +9,7 @@ jobs:
     steps:
       - uses: pkgstore/github-action-mirror@main
         with:
-          source_repo: "https://github.com/${{ github.repository }}.git"
+          source_repo: "https://lukas-eisenhauer.de/git/git/lukas/music.git"
           target_repo: "git@github.com:biosfood/music-app.git"
           target_user: "${{ secrets.MIRROR_TARGET_USER_GITHUB }}"
           target_token: "${{ secrets.MIRROR_TARGET_TOKEN_GITHUB }}"
