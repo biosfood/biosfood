@@ -15,4 +15,4 @@ jobs:
         run: git clone --bare https://lukas-eisenhauer.de/git/git/lukas/music.git
       - name: "pushing mirrored repository"
         shell: bash
-        run: cd music && git push --mirror git@github.com:biosfood/music-app.git
+        run: cd music.git && git push --mirror git@github.com:biosfood/music-app.git
